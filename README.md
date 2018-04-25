@@ -1,5 +1,4 @@
 # monty
-Monty Bytecode Interpreter
-This is a test
 
-Interprets monty bytecode
+20180425
+A Basic Interpreter of Monty Bytecode
