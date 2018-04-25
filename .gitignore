@@ -9,8 +9,6 @@
 *~
 **/*~
 **/\#*
-# Ignore main files
-**/*main.c
 # Ignore object files and libraries
 *.o
 *.ko
