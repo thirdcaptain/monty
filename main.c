@@ -18,8 +18,8 @@ int main(int __attribute__((unused))argc, char *argv[])
 		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fileptr = fopen(argv[1], "r");*/
-	fileptr = fopen("bytecodes/1.m", "r");
+	fileptr = fopen(argv[1], "r");
+*/	fileptr = fopen("bytecodes/1.m", "r");
 	if (fileptr == NULL)
 	{
 		printf("Error: Can't open file <file>\n");

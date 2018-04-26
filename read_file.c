@@ -86,14 +86,10 @@ void parse_line(char *string)
 	array_strings = ret_array(string);
 	for (i = 0; instruct[i].opcode != NULL; i++)
 	{
-		remove_newline(array_strings[0]);
-		remove_newline(array_strings[1]);
-/*		for (j = 0; array_strings[0][j] != '\0'; j++)
-		{
-			if (array_strings[0][j] == '\n')
-				array_strings[0][j] = '\0';
-		}
-*/
+		if (array_strings[0])
+			remove_newline(array_strings[0]);
+		if (array_strings[1])
+			remove_newline(array_strings[1]);
 		printf("array[0]: %s\n", array_strings[0]);
 		if (strcmp(instruct[i].opcode, array_strings[0]) == 0)
 		{
@@ -116,9 +112,11 @@ void parse_line(char *string)
 		}
 		printf("global %d\n", global_value);
 	}
-/*	printf("L<line_number>: unknown instruction <opcode>\n");
-	exit(EXIT_FAILURE);
-*/
+	if (instruct[i].opcode == NULL)
+	{
+		printf("L<line_number>: unknown instruction <opcode>\n");
+		exit(EXIT_FAILURE);
+	}
 	if (array_strings)
 		free(array_strings);
 

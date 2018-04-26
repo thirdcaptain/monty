@@ -45,36 +45,3 @@ void remove_newline(char *string)
 			string[i] = '\0';
 	}
 }
-
-/*
-int main(void)
-{
-        char *s1 = "5";
-        char *s2 = "-5";
-        char *s3 = "pall";
-        int value = 0;
-
-        printf("s1: %d\n", atoi(s1));
-        value = is_number(s1);
-        if (value == 0)
-                printf("%s is a number\n", s1);
-        else
-                printf("%s is not a number\n", s1);
-
-        printf("s2: %d\n", atoi(s2));
-        value = is_number(s2);
-        if (value == 0)
-                printf("%s is a number\n", s2);
-        else
-                printf("%s is not a number\n", s2);
-
-        printf("s3: %d\n", atoi(s3));
-        value = is_number(s3);
-        if (value == 0)
-                printf("%s is a number\n", s3);
-        else
-                printf("%s is not a number\n", s3);
-
-        return(0);
-}
-*/
