@@ -67,7 +67,6 @@ char **ret_array(char *string)
 	return (array);
 }
 
-
 /**
  * parse_line - processes lines from files
  * @string: pointer to string
