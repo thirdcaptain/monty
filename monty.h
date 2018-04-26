@@ -42,5 +42,7 @@ void read_file(FILE *file);
 void parse_line(char *string);
 void push();
 void pall();
+int is_number(char *string);
+void remove_newline(char *string);
 
 #endif

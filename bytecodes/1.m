@@ -1,3 +1,3 @@
-push 5
-push
-pall
+push 7
+push 3
+pall 5

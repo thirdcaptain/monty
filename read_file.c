@@ -75,7 +75,7 @@ char **ret_array(char *string)
 void parse_line(char *string)
 {
 	char **array_strings;
-	int i = 0, j = 0;
+	int i = 0;
 	instruction_t instruct[] = {
 		{"pall", pall},
 		{"push", push},
@@ -86,18 +86,27 @@ void parse_line(char *string)
 	array_strings = ret_array(string);
 	for (i = 0; instruct[i].opcode != NULL; i++)
 	{
-		for (j = 0; array_strings[0][j] != '\0'; j++)
+		remove_newline(array_strings[0]);
+		remove_newline(array_strings[1]);
+/*		for (j = 0; array_strings[0][j] != '\0'; j++)
 		{
 			if (array_strings[0][j] == '\n')
 				array_strings[0][j] = '\0';
 		}
+*/
 		printf("array[0]: %s\n", array_strings[0]);
 		if (strcmp(instruct[i].opcode, array_strings[0]) == 0)
 		{
 			if (array_strings[1])
 			{
+				if (is_number(array_strings[1]) != 0)
+				{
+					printf("L%d: usage: push integer\n", line_number);
+					exit(EXIT_FAILURE);
+				}
 				global_value = atoi(array_strings[1]);
 				instruct[i].f(stack, line_number);
+				break;
 			}
 			else if (array_strings[1] == NULL)
 			{
@@ -110,29 +119,7 @@ void parse_line(char *string)
 /*	printf("L<line_number>: unknown instruction <opcode>\n");
 	exit(EXIT_FAILURE);
 */
-
-
-/*	for (i = 0; array_strings[i] != NULL; i++)
-	{
-		printf("[%d]: %s\n", i, array_strings[i]);
-		for (j = 0; instruct[j].opcode != NULL; j++)
-		{
-			if (strcmp(instruct[j].opcode, array_strings[i]) == 0)
-			{
-				global_value = atoi(array_strings[i + 1]);
-				printf("OPCODE:%s\n", instruct[j].opcode);
-				instruct[j].f(stack, line_number);
-				printf("global: %d\n", global_value);
-			}
-		}
-*/
-/*		if (instruct[j].opcode == NULL && array_strings[i] != '\0')
-		{
-			printf("L<line_number>: unknown instruction <opcode>\n");
-			exit(EXIT_FAILURE);
-		}
-	}
-*/	if (array_strings)
+	if (array_strings)
 		free(array_strings);
 
 }
