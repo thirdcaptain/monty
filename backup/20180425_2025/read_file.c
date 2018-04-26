@@ -70,6 +70,21 @@ char **ret_array(char *string)
 
 void parse_line(char *string)
 {
+/*	const char s[2] = " ";
+	char *token;
+	int value = 0;
+
+	token = strtok(string, s);
+	while (token != NULL)
+	{
+		if (strcmp(token, "pall") == 0)
+			pall();
+		if (strcmp(token, "push") == 0)
+			push(value);
+		printf("Token: %s\n", token);
+		token = strtok(NULL, s);
+	}
+*/
 	char **array_strings;
 	int i = 0;
 
