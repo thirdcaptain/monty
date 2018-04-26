@@ -6,7 +6,6 @@
 #include <string.h>
 
 extern int global_value;
-extern unsigned int line_number;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,9 +38,9 @@ typedef struct instruction_s
 } instruction_t;
 
 void read_file(FILE *file);
-void parse_line(char *string);
-void push();
-void pall();
+void parse_line(char *string, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 int is_number(char *string);
 void remove_newline(char *string);
 

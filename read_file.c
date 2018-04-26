@@ -1,7 +1,6 @@
 #include "monty.h"
 
 int global_value = 0;
-unsigned int line_number = 0;
 
 /**
  * token_count - count number of tokens
@@ -70,9 +69,10 @@ char **ret_array(char *string)
 /**
  * parse_line - processes lines from files
  * @string: pointer to string
+ * @line_number: line number in file
  */
 
-void parse_line(char *string)
+void parse_line(char *string, unsigned int line_number)
 {
 	char **array_strings;
 	int i = 0;
@@ -98,6 +98,8 @@ void parse_line(char *string)
 				if (is_number(array_strings[1]) != 0)
 				{
 					printf("L%d: usage: push integer\n", line_number);
+					if(array_strings)
+						free(array_strings);
 					exit(EXIT_FAILURE);
 				}
 				global_value = atoi(array_strings[1]);
@@ -106,15 +108,24 @@ void parse_line(char *string)
 			}
 			else if (array_strings[1] == NULL)
 			{
-				global_value = -1;
+				if (strcmp(instruct[i].opcode,"push") == 0)
+				{
+                                        printf("L%d: usage: push integer\n", line_number);
+                                        if(array_strings)
+                                                free(array_strings);
+                                        exit(EXIT_FAILURE);
+                                }
 				instruct[i].f(stack, line_number);
+				break;
 			}
 		}
 		printf("global %d\n", global_value);
 	}
-	if (instruct[i].opcode == NULL)
+	if (instruct[i].opcode == NULL && strcmp(array_strings[0],"") != 0)
 	{
-		printf("L<line_number>: unknown instruction <opcode>\n");
+		printf("L%d: unknown instruction <opcode>\n", line_number);
+		if(array_strings)
+			free(array_strings);
 		exit(EXIT_FAILURE);
 	}
 	if (array_strings)
@@ -132,6 +143,7 @@ void read_file(FILE *file)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t read;
+	unsigned int line_number = 0;
 
 	while ((read = getline(&line, &len, file)) != -1)
 	{
@@ -139,7 +151,7 @@ void read_file(FILE *file)
 /*              printf("Retrieved line of length %zu :\n", read);*/
 		printf("string: %s", line);
 /*		printf("line number: %d\n", line_number);*/
-		parse_line(line);
+		parse_line(line, line_number);
 	}
 	if (line)
 		free(line);
