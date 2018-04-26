@@ -52,10 +52,7 @@ char **ret_array(char *string)
 	num_token = token_count(string);
 	array = malloc((sizeof(char *) * (num_token + 1)));
 	if (array == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		return (NULL);
 	token = strtok(string, " ");
 	while (token != NULL)
 	{
@@ -83,37 +80,10 @@ void parse_line(char *string)
 		{NULL, NULL},
 	};
 	stack_t **stack = NULL;
+	unsigned int line_number = 0;
 
 	array_strings = ret_array(string);
-	for (i = 0; instruct[i].opcode != NULL; i++)
-	{
-		for (j = 0; array_strings[0][j] != '\0'; j++)
-		{
-			if (array_strings[0][j] == '\n')
-				array_strings[0][j] = '\0';
-		}
-		printf("array[0]: %s\n", array_strings[0]);
-		if (strcmp(instruct[i].opcode, array_strings[0]) == 0)
-		{
-			if (array_strings[1])
-			{
-				global_value = atoi(array_strings[1]);
-				instruct[i].f(stack, line_number);
-			}
-			else if (array_strings[1] == NULL)
-			{
-				global_value = -1;
-				instruct[i].f(stack, line_number);
-			}
-		}
-		printf("global %d\n", global_value);
-	}
-/*	printf("L<line_number>: unknown instruction <opcode>\n");
-	exit(EXIT_FAILURE);
-*/
-
-
-/*	for (i = 0; array_strings[i] != NULL; i++)
+	for (i = 0; array_strings[i] != NULL; i++)
 	{
 		printf("[%d]: %s\n", i, array_strings[i]);
 		for (j = 0; instruct[j].opcode != NULL; j++)
@@ -121,19 +91,18 @@ void parse_line(char *string)
 			if (strcmp(instruct[j].opcode, array_strings[i]) == 0)
 			{
 				global_value = atoi(array_strings[i + 1]);
-				printf("OPCODE:%s\n", instruct[j].opcode);
+/*				printf("OPCODE:%s\n", instruct[j].opcode);*/
 				instruct[j].f(stack, line_number);
 				printf("global: %d\n", global_value);
 			}
 		}
-*/
 /*		if (instruct[j].opcode == NULL && array_strings[i] != '\0')
 		{
 			printf("L<line_number>: unknown instruction <opcode>\n");
 			exit(EXIT_FAILURE);
 		}
-	}
-*/	if (array_strings)
+*/	}
+	if (array_strings)
 		free(array_strings);
 
 }
