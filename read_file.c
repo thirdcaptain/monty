@@ -70,6 +70,7 @@ char **ret_array(char *string)
  * parse_line - processes lines from files
  * @string: pointer to string
  * @line_number: line number in file
+ * @stack: linked list
  */
 
 void parse_line(char *string, unsigned int line_number, stack_t **stack)
@@ -89,7 +90,7 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 			remove_newline(array_strings[0]);
 		if (array_strings[1])
 			remove_newline(array_strings[1]);
-		printf("array[0]: %s\n", array_strings[0]);
+/*		printf("array[0]: %s\n", array_strings[0]);*/
 		if (strcmp(instruct[i].opcode, array_strings[0]) == 0)
 		{
 			if (array_strings[1])
@@ -120,7 +121,7 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 				break;
 			}
 		}
-		printf("global %d\n", global_value);
+/*		printf("global %d\n", global_value);*/
 	}
 	if (instruct[i].opcode == NULL && strcmp(array_strings[0], "") != 0)
 	{
@@ -136,6 +137,7 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 /**
  * read_file - reads lines from files
  * @file: pointer to file
+ * @stack: linked list
  */
 
 void read_file(FILE *file, stack_t **stack)
@@ -149,7 +151,7 @@ void read_file(FILE *file, stack_t **stack)
 	{
 		line_number++;
 /*              printf("Retrieved line of length %zu :\n", read);*/
-		printf("string: %s", line);
+/*		printf("string: %s", line);*/
 /*		printf("line number: %d\n", line_number);*/
 		parse_line(line, line_number, stack);
 	}
