@@ -80,9 +80,13 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 	instruction_t instruct[] = {
 		{"pall", pall},
 		{"push", push},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
 		{NULL, NULL},
 	};
-
 	array_strings = ret_array(string);
 	for (i = 0; instruct[i].opcode != NULL; i++)
 	{
