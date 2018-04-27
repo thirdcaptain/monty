@@ -20,7 +20,8 @@ int main(int __attribute__((unused))argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	fileptr = fopen(argv[1], "r");
-/*	fileptr = fopen("bytecodes/001.m", "r");*/
+
+/*	fileptr = fopen("bytecodes/3.c", "r");*/
 	if (fileptr == NULL)
 	{
 		printf("Error: Can't open file <file>\n");
