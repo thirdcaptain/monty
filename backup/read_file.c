@@ -95,7 +95,9 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 		{
 			if (array_strings[1])
 			{
-				if (is_number(array_strings[1]) != 0)
+				if ((is_number(array_strings[1]) != 0 ||
+				     strcmp(array_strings[1], "") == 0) &&
+				    strcmp(array_strings[0], "push") == 0)
 				{
 					printf("L%d: usage: push integer\n",
 					       line_number);
@@ -125,7 +127,7 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 	}
 	if (instruct[i].opcode == NULL && strcmp(array_strings[0], "") != 0)
 	{
-		printf("L%d: unknown instruction <opcode>\n", line_number);
+		printf("L%d: unknown instruction %s\n", line_number, array_strings[0]);
 		if (array_strings)
 			free(array_strings);
 		exit(EXIT_FAILURE);

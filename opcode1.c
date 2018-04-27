@@ -43,13 +43,16 @@ void push(stack_t **stack, unsigned int line_number)
 
 void pall(stack_t **stack, unsigned int line_number)
 {
+	stack_t *head;
+
 	(void)line_number;
 /*	printf("stack->n: %d\n", (*stack)->n);*/
-	while ((*stack) != NULL)
+	head = *stack;
+	while (head != NULL)
 	{
-		printf("%d\n", (*stack)->n);
+		printf("%d\n", head->n);
 /*		printf("BOOM\n");*/
-		*stack = (*stack)->next;
+		head = head->next;
 	}
 /*	printf("PALL CALLED!\n");*/
 /*	printf("line number: %d\n", line_number);*/
