@@ -127,7 +127,7 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 	}
 	if (instruct[i].opcode == NULL && strcmp(array_strings[0], "") != 0)
 	{
-		printf("L%d: unknown instruction <opcode>\n", line_number);
+		printf("L%d: unknown instruction %s\n", line_number, array_strings[0]);
 		if (array_strings)
 			free(array_strings);
 		exit(EXIT_FAILURE);

@@ -24,7 +24,7 @@ int main(int __attribute__((unused))argc, char *argv[])
 /*	fileptr = fopen("bytecodes/3.c", "r");*/
 	if (fileptr == NULL)
 	{
-		printf("Error: Can't open file <file>\n");
+		printf("Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	read_file(fileptr, &stack);
