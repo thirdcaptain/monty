@@ -37,8 +37,8 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void read_file(FILE *file);
-void parse_line(char *string, unsigned int line_number);
+void read_file(FILE *file, stack_t **stack);
+void parse_line(char *string, unsigned int line_number, stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 int is_number(char *string);

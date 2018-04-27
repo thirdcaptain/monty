@@ -11,6 +11,7 @@
 int main(int __attribute__((unused))argc, char *argv[])
 {
 	FILE *fileptr;
+	stack_t *stack = NULL;
 
 	(void)argv;
 /*	if (argc < 2)
@@ -25,7 +26,7 @@ int main(int __attribute__((unused))argc, char *argv[])
 		printf("Error: Can't open file <file>\n");
 		exit(EXIT_FAILURE);
 	}
-	read_file(fileptr);
+	read_file(fileptr, &stack);
 
 	fclose(fileptr);
 

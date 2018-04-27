@@ -1,4 +1,2 @@
-pall 5
-push -300000
+push 6
 pall
-moose

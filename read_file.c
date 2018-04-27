@@ -72,7 +72,7 @@ char **ret_array(char *string)
  * @line_number: line number in file
  */
 
-void parse_line(char *string, unsigned int line_number)
+void parse_line(char *string, unsigned int line_number, stack_t **stack)
 {
 	char **array_strings;
 	int i = 0;
@@ -81,7 +81,6 @@ void parse_line(char *string, unsigned int line_number)
 		{"push", push},
 		{NULL, NULL},
 	};
-	stack_t **stack = NULL;
 
 	array_strings = ret_array(string);
 	for (i = 0; instruct[i].opcode != NULL; i++)
@@ -97,8 +96,9 @@ void parse_line(char *string, unsigned int line_number)
 			{
 				if (is_number(array_strings[1]) != 0)
 				{
-					printf("L%d: usage: push integer\n", line_number);
-					if(array_strings)
+					printf("L%d: usage: push integer\n",
+					       line_number);
+					if (array_strings)
 						free(array_strings);
 					exit(EXIT_FAILURE);
 				}
@@ -108,29 +108,29 @@ void parse_line(char *string, unsigned int line_number)
 			}
 			else if (array_strings[1] == NULL)
 			{
-				if (strcmp(instruct[i].opcode,"push") == 0)
+				if (strcmp(instruct[i].opcode, "push") == 0)
 				{
-                                        printf("L%d: usage: push integer\n", line_number);
-                                        if(array_strings)
-                                                free(array_strings);
-                                        exit(EXIT_FAILURE);
-                                }
+					printf("L%d: usage: push integer\n",
+					       line_number);
+					if (array_strings)
+						free(array_strings);
+					exit(EXIT_FAILURE);
+				}
 				instruct[i].f(stack, line_number);
 				break;
 			}
 		}
 		printf("global %d\n", global_value);
 	}
-	if (instruct[i].opcode == NULL && strcmp(array_strings[0],"") != 0)
+	if (instruct[i].opcode == NULL && strcmp(array_strings[0], "") != 0)
 	{
 		printf("L%d: unknown instruction <opcode>\n", line_number);
-		if(array_strings)
+		if (array_strings)
 			free(array_strings);
 		exit(EXIT_FAILURE);
 	}
 	if (array_strings)
 		free(array_strings);
-
 }
 
 /**
@@ -138,7 +138,7 @@ void parse_line(char *string, unsigned int line_number)
  * @file: pointer to file
  */
 
-void read_file(FILE *file)
+void read_file(FILE *file, stack_t **stack)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -151,7 +151,7 @@ void read_file(FILE *file)
 /*              printf("Retrieved line of length %zu :\n", read);*/
 		printf("string: %s", line);
 /*		printf("line number: %d\n", line_number);*/
-		parse_line(line, line_number);
+		parse_line(line, line_number, stack);
 	}
 	if (line)
 		free(line);
