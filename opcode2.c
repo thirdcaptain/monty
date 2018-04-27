@@ -27,10 +27,33 @@ void pint(stack_t **stack, unsigned int line_number)
 
 void pop(stack_t **stack, unsigned int line_number)
 {
-	(void)stack;
-	(void)line_number;
-	printf("POP called\n");
-	return;
+	stack_t *head;
+	stack_t *temp;
+	int count = 0;
+
+	head = *stack;
+	if (head == NULL)
+	{
+		printf("L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (head != NULL)
+	{
+		count++;
+		head = head->next;
+	}
+	head = *stack;
+	if (count == 1)
+	{
+		free(head);
+		*stack = NULL;
+		return;
+	}
+	temp = head;
+	head = head->next;
+	head->prev = NULL;
+	(*stack) = head;
+	free(temp);
 }
 
 /**
@@ -71,6 +94,5 @@ void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-	printf("NOP called\n");
 	return;
 }
