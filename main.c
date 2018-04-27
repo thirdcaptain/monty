@@ -14,13 +14,13 @@ int main(int __attribute__((unused))argc, char *argv[])
 	stack_t *stack = NULL;
 
 	(void)argv;
-	if (argc < 2)
+/*	if (argc < 2)
 	{
 		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fileptr = fopen(argv[1], "r");
-/*	fileptr = fopen("bytecodes/1.m", "r");*/
+	fileptr = fopen(argv[1], "r");*/
+	fileptr = fopen("bytecodes/001.m", "r");
 	if (fileptr == NULL)
 	{
 		printf("Error: Can't open file <file>\n");
