@@ -95,7 +95,8 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 		{
 			if (array_strings[1])
 			{
-				if (is_number(array_strings[1]) != 0)
+				if (is_number(array_strings[1]) != 0 &&
+				    strcmp(array_strings[0], "push") == 0)
 				{
 					printf("L%d: usage: push integer\n",
 					       line_number);
