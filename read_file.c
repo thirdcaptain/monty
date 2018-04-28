@@ -164,4 +164,5 @@ void read_file(FILE *file, stack_t **stack)
 	}
 	if (line)
 		free(line);
+	free_list(stack);
 }
