@@ -6,6 +6,8 @@
 #include <string.h>
 #include <ctype.h>
 
+extern int global_value;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -17,9 +19,9 @@
  */
 typedef struct stack_s
 {
-	int n;
-	struct stack_s *prev;
-	struct stack_s *next;
+        int n;
+        struct stack_s *prev;
+        struct stack_s *next;
 } stack_t;
 
 /**
@@ -32,31 +34,10 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+        char *opcode;
+        void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct global_s - global variables
- * @value: value from string
- * @line: line read from getline
- * @array: array of strings from strtok
- * @file: file descriptor
- */
-typedef struct global_s
-{
-	int value;
-	char *line;
-	char **array;
-	FILE *file;
-} global_t;
-
-extern global_t global_vars;
-global_t global_vars;
-
-
-int token_count(char *str);
-char **ret_array(char *string, stack_t **stack);
 void read_file(FILE *file, stack_t **stack);
 void parse_line(char *string, unsigned int line_number, stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);
@@ -69,8 +50,5 @@ void nop(stack_t **stack, unsigned int line_number);
 
 int is_number(char *string);
 void remove_newline(char *string);
-
-void free_list(stack_t **stack);
-void free_vars(void);
 
 #endif

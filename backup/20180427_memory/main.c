@@ -27,8 +27,8 @@ int main(int __attribute__((unused))argc, char *argv[])
 		printf("Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	global_vars.file = fileptr;
 	read_file(fileptr, &stack);
+
 	fclose(fileptr);
 
 	return (0);

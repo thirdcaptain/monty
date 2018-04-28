@@ -14,8 +14,6 @@ void pint(stack_t **stack, unsigned int line_number)
 	if (head == NULL)
 	{
 		printf("L%d: can't pint, stack empty\n", line_number);
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", head->n);
@@ -37,8 +35,6 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (head == NULL)
 	{
 		printf("L%d: can't pop an empty stack\n", line_number);
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
 	while (head != NULL)
@@ -77,8 +73,6 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (head == NULL)
 	{
 		printf("L%d: can't swap, stack too short\n", line_number);
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
 	while (head != NULL)
@@ -89,8 +83,6 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (count < 2)
 	{
 		printf("L%d: can't swap, stack too short\n", line_number);
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
 	head = *stack;
@@ -117,8 +109,6 @@ void add(stack_t **stack, unsigned int line_number)
 	if (head == NULL)
 	{
 		printf("L%d: can't add, stack too short\n", line_number);
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
 	while (head != NULL)
@@ -129,8 +119,6 @@ void add(stack_t **stack, unsigned int line_number)
 	if (count < 2)
 	{
 		printf("L%d: can't add, stack too short\n", line_number);
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
 	head = *stack;
@@ -150,4 +138,5 @@ void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
+	return;
 }

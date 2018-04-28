@@ -15,11 +15,9 @@ void push(stack_t **stack, unsigned int line_number)
 	if (head == NULL)
 	{
 		printf("Error: malloc failed\n");
-		free_list(stack);
-		free_vars();
 		exit(EXIT_FAILURE);
 	}
-	head->n = global_vars.value;
+	head->n = global_value;
 	head->prev = NULL;
 	if (*stack == NULL)
 	{
@@ -48,10 +46,12 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *head;
 
 	(void)line_number;
+/*	printf("stack->n: %d\n", (*stack)->n);*/
 	head = *stack;
 	while (head != NULL)
 	{
 		printf("%d\n", head->n);
+/*		printf("BOOM\n");*/
 		head = head->next;
 	}
 /*	printf("PALL CALLED!\n");*/
