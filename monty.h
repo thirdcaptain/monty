@@ -47,7 +47,7 @@ typedef struct global_s
 {
 	int value;
 	char *line;
-	char **array;
+	char *array[2];
 	FILE *file;
 } global_t;
 
@@ -56,7 +56,7 @@ global_t global_vars;
 
 
 int token_count(char *str);
-char **ret_array(char *string, stack_t **stack);
+void ret_array(char *string, stack_t **stack);
 void read_file(FILE *file, stack_t **stack);
 void parse_line(char *string, unsigned int line_number, stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);

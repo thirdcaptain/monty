@@ -40,13 +40,14 @@ int token_count(char *str)
  * Return: pointer to pointer of arrays of strings
  */
 
-char **ret_array(char *string, stack_t **stack)
+void ret_array(char *string, stack_t **stack)
 {
 	int i = 0;
-	int num_token = 0;
+/*	int num_token = 0;*/
 	char *token;
 
-	num_token = token_count(string);
+	(void)stack;
+/*	num_token = token_count(string);
 	global_vars.array = malloc((sizeof(char *) * (num_token + 1)));
 	if (global_vars.array == NULL)
 	{
@@ -55,15 +56,15 @@ char **ret_array(char *string, stack_t **stack)
 		free_vars();
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(string, " ");
-	while (token != NULL)
+*/	token = strtok(string, " ");
+	while (i < 2)
 	{
 		global_vars.array[i] = token;
 		i++;
 		token = strtok(NULL, " ");
 	}
 	global_vars.array[i] = NULL;
-	return (global_vars.array);
+/*	return (global_vars.array);*/
 }
 
 /**
@@ -86,7 +87,9 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 		{"nop", nop},
 		{NULL, NULL},
 	};
-	global_vars.array = ret_array(string, stack);
+
+/*	global_vars.array = ret_array(string, stack);*/
+	ret_array(string, stack);
 	for (i = 0; instruct[i].opcode != NULL; i++)
 	{
 		if (global_vars.array[0])
@@ -133,8 +136,9 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 		free_vars();
 		exit(EXIT_FAILURE);
 	}
-	if (global_vars.array)
+/*	if (global_vars.array)
 		free(global_vars.array);
+*/
 }
 
 /**
