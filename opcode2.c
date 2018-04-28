@@ -64,10 +64,32 @@ void pop(stack_t **stack, unsigned int line_number)
 
 void swap(stack_t **stack, unsigned int line_number)
 {
-	(void)stack;
-	(void)line_number;
-	printf("SWAP called\n");
-	return;
+	stack_t *head;
+	stack_t *temp;
+	int count = 0;
+	int temp_num = 0;
+
+	head = *stack;
+	if (head == NULL)
+	{
+		printf("L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (head != NULL)
+	{
+		count++;
+		head = head->next;
+	}
+	if (count < 2)
+	{
+		printf("L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	head = *stack;
+	temp = head->next;
+	temp_num = head->n;
+	head->n = temp->n;
+	temp->n = temp_num;
 }
 
 /**
@@ -78,10 +100,32 @@ void swap(stack_t **stack, unsigned int line_number)
 
 void add(stack_t **stack, unsigned int line_number)
 {
-	(void)stack;
-	(void)line_number;
-	printf("ADD called\n");
-	return;
+	stack_t *head;
+	stack_t *temp;
+	int count = 0;
+	int temp_num = 0;
+
+	head = *stack;
+	if (head == NULL)
+	{
+		printf("L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (head != NULL)
+	{
+		count++;
+		head = head->next;
+	}
+	if (count < 2)
+	{
+		printf("L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	head = *stack;
+	temp = head->next;
+	temp_num = (head->n) + (temp->n);
+	pop(stack, line_number);
+	(*stack)->n = temp_num;
 }
 
 /**
