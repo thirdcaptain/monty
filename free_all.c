@@ -29,8 +29,10 @@ void free_vars(void)
 {
 	if (global_vars.line)
 		free(global_vars.line);
-/*	if (global_vars.array)
-		free(global_vars.array);
-*/	if (global_vars.file)
+/*
+ *	if (global_vars.array)
+ *		free(global_vars.array);
+ */
+	if (global_vars.file)
 		fclose(global_vars.file);
 }

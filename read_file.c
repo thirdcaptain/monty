@@ -47,15 +47,16 @@ void ret_array(char *string, stack_t **stack)
 	char *token;
 
 	(void)stack;
-/*	num_token = token_count(string);
-	global_vars.array = malloc((sizeof(char *) * (num_token + 1)));
-	if (global_vars.array == NULL)
-	{
-		printf("Error: malloc failed\n");
-		free_list(stack);
-		free_vars();
-		exit(EXIT_FAILURE);
-	}
+/*
+ *	num_token = token_count(string);
+ *	global_vars.array = malloc((sizeof(char *) * (num_token + 1)));
+ *	if (global_vars.array == NULL)
+ *	{
+ *		printf("Error: malloc failed\n");
+ *		free_list(stack);
+ *		free_vars();
+ *		exit(EXIT_FAILURE);
+ *	}
 */	token = strtok(string, " ");
 	while (i < 2)
 	{
@@ -136,8 +137,9 @@ void parse_line(char *string, unsigned int line_number, stack_t **stack)
 		free_vars();
 		exit(EXIT_FAILURE);
 	}
-/*	if (global_vars.array)
-		free(global_vars.array);
+/*
+ *	if (global_vars.array)
+ *		free(global_vars.array);
 */
 }
 
